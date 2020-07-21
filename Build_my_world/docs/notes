@@ -1,0 +1,45 @@
+gazebo:
+Model editor
+-> edit -> model editor
+-> drag and drop the shapes
+-> double click link inspector tab
+-> link -> for objects pose in world
+-> visual and collision -> for objects shape and properties
+-> make sure you finalise the model before exiting as for editing you have to do that in .sdf file
+-> to connect the joints use joints tab align the object as per your need
+
+Building editor
+-> edit -> building editor
+-> use wall to draw outlines. you can chage the dimention of individual element independently.
+
+create the world
+-> open gazebo
+-> save the blank world in respective directory
+-> then load the same world add the models and buildings
+-> save it again
+
+Gazebo plug in
+create the script file as one in the directory
+create CMakeLists.txt 
+-> make sure you have correct executable and .cpp file name
+
+building the project
+$ cd /home/workspace/myrobot
+$ mkdir build
+$ cd build/
+$ cmake ../
+$ make # You might get errors if your system is not up to date!
+$ export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:/home/workspace/myrobot/build
+
+the export step is important here
+
+add the plugin in the world file
+-> open world file and search for <world name='default'>
+below that add following line
+<plugin name="hello" filename="libhello.so"/>
+-> in above line replace hello with the name of executive
+
+and to run the program 
+$ cd /home/workspace/myrobot/world/
+$ gazebo myworld
+
